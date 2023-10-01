@@ -1,60 +1,54 @@
-// import { Grid } from "@mui/material";
-// import React from "react";
-// import TabelasLivros from "../componentes/table";
-// import ImgBiblioteca from "../public/assets/Biblioteca.jpg";
-
-// const ImgBackground =
-//   require("../public/assets/biblioteca-magica.avif") as string;
-// const Livros: React.FC = () => {
-//   return (
-//     <Grid
-//       container
-//       spacing={2}
-//       sx={{
-//         height: "100vh",
-//         padding: "0 5rem ",
-//         backgroundColor: "#4253b1",
-//       }}
-//       justifyContent="center"
-//       alignItems="center"
-//     >
-//       <Grid>
-//         <Grid item>
-//           <TabelasLivros />
-//         </Grid>
-//       </Grid>
-//     </Grid>
-//     // <div>
-//     //   <img src={ImgBackground}>Hello World</img>
-//     // </div>
-//   );
-// };
-// export default Livros;
-import { Grid } from "@mui/material";
-import React from "react";
-import TabelasLivros from "../componentes/table";
+import React, { useState } from "react";
+import { Button, Grid } from "@mui/material";
+import TabelasLivros from "../componentes/TableLivros";
 import ImgBackground from "../public/assets/biblioteca-magica.avif";
+import SendIcon from "@mui/icons-material/Send";
+import FormAdicionarLivros from "../componentes/FormAdicionarLivros";
 
 const Livros: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div
-      style={{
-        backgroundImage: `url(${ImgBackground})`,
-        backgroundSize: "cover",
-        //backgroundRepeat: "no-repeat",
-        // backgroundPosition: "center",
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Grid container justifyContent="center" alignItems="center">
-        <Grid item>
-          <TabelasLivros />
+    <>
+      <div
+        style={{
+          backgroundImage: `url(${ImgBackground})`,
+          backgroundSize: "cover",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item>
+            <TabelasLivros />
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item sx={{ m: 3 }}>
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              onClick={handleOpen}
+            >
+              Adicionar Livro
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
+
+      <FormAdicionarLivros open={open} onClose={handleClose} />
+    </>
   );
 };
 
