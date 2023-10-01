@@ -4,6 +4,7 @@ import TabelasLivros from "../componentes/TableLivros";
 import ImgBackground from "../public/assets/biblioteca-magica.avif";
 import SendIcon from "@mui/icons-material/Send";
 import FormAdicionarLivros from "../componentes/FormAdicionarLivros";
+import ListaLivros from "../componentes/TableLivros";
 
 const Livros: React.FC = () => {
   const [open, setOpen] = useState(false);

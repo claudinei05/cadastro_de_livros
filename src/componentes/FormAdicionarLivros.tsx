@@ -13,6 +13,11 @@ interface FormAdicionarLivrosProps {
   onClose: () => void;
 }
 
+function getSavedBooks() {
+  const livrosSalvos = JSON.parse(localStorage.getItem("livros") || "[]");
+  return livrosSalvos;
+}
+
 export default function FormAdicionarLivros({
   open,
   onClose,
@@ -30,7 +35,7 @@ export default function FormAdicionarLivros({
     };
 
     // Verificar se já existem dados salvos no localStorage
-    const livrosSalvos = JSON.parse(localStorage.getItem("livros") || "[]");
+    const livrosSalvos = getSavedBooks();
 
     // Adicionar o novo livro à lista de livros salvos
     livrosSalvos.push(novoLivro);
