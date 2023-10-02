@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Paper } from "@mui/material";
 import TabelasLivros from "../componentes/TableLivros";
 import ImgBackground from "../public/assets/biblioteca-magica.avif";
 import SendIcon from "@mui/icons-material/Send";
@@ -18,38 +18,50 @@ const Livros: React.FC = () => {
   };
 
   return (
-    <>
-      <div
-        style={{
-          //  // backgroundImage: `url(${ImgBackground})`,
-          backgroundSize: "cover",
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+    <Grid container>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          height: "100%",
+          padding: "0 5rem ",
+          backgroundColor: "#4253b1",
         }}
+        justifyContent="center"
       >
-        <Grid container justifyContent="center" alignItems="center">
-          <Grid item>
-            <ListaLivros />
+        <Grid item>
+          <Paper
+            square
+            elevation={0}
+            sx={{
+              background: "#ca9a40",
+              color: "black",
+              borderRadius: "10px ",
+              padding: "50px",
+              m: 3,
+            }}
+          >
+            <Grid>
+              <Grid item>
+                <ListaLivros />
+              </Grid>
+            </Grid>
+          </Paper>
+          <Grid>
+            <Grid item alignItems="center">
+              <Button
+                variant="contained"
+                endIcon={<SendIcon />}
+                onClick={handleOpen}
+              >
+                Adicionar Livro
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
-        <Grid container justifyContent="center" alignItems="center">
-          <Grid item sx={{ m: 3 }}>
-            <Button
-              variant="contained"
-              endIcon={<SendIcon />}
-              onClick={handleOpen}
-            >
-              Adicionar Livro
-            </Button>
-          </Grid>
-        </Grid>
-      </div>
-
-      <FormAdicionarLivros open={open} onClose={handleClose} />
-    </>
+        <FormAdicionarLivros open={open} onClose={handleClose} />
+      </Grid>
+    </Grid>
   );
 };
 
