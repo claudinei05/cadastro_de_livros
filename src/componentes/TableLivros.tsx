@@ -15,6 +15,7 @@ interface Livro {
 }
 
 function ListaLivros() {
+  const [livro, setLivro] = useState("");
   const [livros, setLivros] = useState(getSavedBooks());
   // Função para obter os livros salvos do localStorage
   function getSavedBooks(): Livro[] {

@@ -13,6 +13,7 @@ interface FormAdicionarLivrosProps {
   onClose: () => void;
 }
 
+// Função para obter os livros salvos do localStorage
 function getSavedBooks() {
   const livrosSalvos = JSON.parse(localStorage.getItem("livros") || "[]");
   return livrosSalvos;
@@ -22,6 +23,7 @@ export default function FormAdicionarLivros({
   open,
   onClose,
 }: FormAdicionarLivrosProps) {
+  const [livros, setLivros] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [gender, setGender] = useState("");
@@ -30,6 +32,23 @@ export default function FormAdicionarLivros({
   const [dateRegister, setDateRegister] = useState("");
 
   const handleAdd = () => {
+    // Verificar se todos os campos obrigatórios estão preenchidos
+    if (!title || !author || !publicationYear || !dateRegister) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    // Verificar se os campos têm pelo menos 3 caracteres
+    if (
+      title.length < 4 ||
+      author.length < 4 ||
+      publicationYear.length < 4 ||
+      dateRegister.length < 4
+    ) {
+      alert("Por favor, preencha todos os campos com pelo menos 4 caracteres.");
+      return;
+    }
+
     // Capturar os valores dos campos
     const novoLivro = {
       title,
@@ -48,6 +67,14 @@ export default function FormAdicionarLivros({
 
     // Salvar a lista atualizada no localStorage
     localStorage.setItem("livros", JSON.stringify(livrosSalvos));
+
+    // Limpar os campos de entrada definindo os estados para valores vazios
+    setTitle("");
+    setAuthor("");
+    setGender("");
+    setDescription("");
+    setPublicationYear("");
+    setDateRegister("");
 
     // Fechar o diálogo após salvar
     onClose();
