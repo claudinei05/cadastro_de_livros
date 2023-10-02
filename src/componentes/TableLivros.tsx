@@ -1,10 +1,8 @@
-import React from "react";
-import FormAdicionarLivros from "./FormAdicionarLivros";
+import React, { useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { Button, Grid, IconButton } from "@mui/material";
-import { blue } from "@mui/material/colors";
+import { Button, Grid } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 interface Livro {
@@ -17,12 +15,25 @@ interface Livro {
 }
 
 function ListaLivros() {
+  const [livros, setLivros] = useState(getSavedBooks());
   // Função para obter os livros salvos do localStorage
   function getSavedBooks(): Livro[] {
     const livrosSalvos = JSON.parse(localStorage.getItem("livros") || "[]");
     return livrosSalvos;
   }
+  function handleDeleteLivro(index: number) {
+    // Obter a lista de livros do localStorage
+    const livrosSalvos = getSavedBooks();
 
+    // Remover o livro da lista com base no índice
+    livrosSalvos.splice(index, 1);
+
+    // Atualizar a lista de livros no localStorage
+    localStorage.setItem("livros", JSON.stringify(livrosSalvos));
+
+    // Atualizar o estado 'livros' no React com a lista atualizada
+    setLivros(livrosSalvos);
+  }
   return (
     <div>
       <h2>Livros Salvos</h2>
@@ -47,15 +58,15 @@ function ListaLivros() {
                     </div>
                     <div className="alignRight">
                       <Button
-                        sx={{ m: 1 }}
-                        variant="contained"
-                        endIcon={<DeleteIcon />}
-                        // onClick={handleOpen}
-                      ></Button>
-                      <Button
                         variant="contained"
                         endIcon={<EditIcon />}
                         // onClick={handleOpen}
+                      ></Button>
+                      <Button
+                        sx={{ m: 1 }}
+                        variant="contained"
+                        endIcon={<DeleteIcon />}
+                        onClick={() => handleDeleteLivro(index)}
                       ></Button>
                     </div>
                   </>
