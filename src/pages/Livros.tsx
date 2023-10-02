@@ -21,7 +21,7 @@ const Livros: React.FC = () => {
     <>
       <div
         style={{
-          backgroundImage: `url(${ImgBackground})`,
+          //  // backgroundImage: `url(${ImgBackground})`,
           backgroundSize: "cover",
           minHeight: "100vh",
           display: "flex",

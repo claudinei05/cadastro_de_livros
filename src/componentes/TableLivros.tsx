@@ -1,5 +1,10 @@
 import React from "react";
 import FormAdicionarLivros from "./FormAdicionarLivros";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import { Grid } from "@mui/material";
+import { blue } from "@mui/material/colors";
 
 interface Livro {
   title: string;
@@ -14,22 +19,28 @@ function ListaLivros() {
     return livrosSalvos;
   }
 
-  // Renderiza a lista de livros
   return (
     <div>
       <h2>Livros Salvos</h2>
-      <ul>
+      <List>
         {getSavedBooks().map((livro: Livro, index: number) => (
-          <li key={index}>
-            <strong>Título:</strong> {livro.title}
-            <br />
-            <strong>Autor:</strong> {livro.author}
-            <br />
-            <strong>Descrição:</strong> {livro.description}
-            <br />
-          </li>
+          <ListItem key={index}>
+            <Grid sx={{}}>
+              <ListItemText
+                primary={`Título: ${livro.title}`}
+                secondary={
+                  <>
+                    <div className="alignRight">Autor: {livro.author}</div>
+                    <div className="alignRight">
+                      Descrição: {livro.description}
+                    </div>
+                  </>
+                }
+              />
+            </Grid>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     </div>
   );
 }
