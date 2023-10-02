@@ -32,7 +32,7 @@ const Livros: React.FC = () => {
       >
         <Grid container justifyContent="center" alignItems="center">
           <Grid item>
-            <TabelasLivros />
+            <ListaLivros />
           </Grid>
         </Grid>
         <Grid container justifyContent="center" alignItems="center">

@@ -24,14 +24,20 @@ export default function FormAdicionarLivros({
 }: FormAdicionarLivrosProps) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
+  const [gender, setGender] = useState("");
   const [description, setDescription] = useState("");
+  const [publicationYear, setPublicationYear] = useState("");
+  const [dateRegister, setDateRegister] = useState("");
 
   const handleAdd = () => {
     // Capturar os valores dos campos
     const novoLivro = {
       title,
       author,
+      gender,
       description,
+      publicationYear,
+      dateRegister,
     };
 
     // Verificar se já existem dados salvos no localStorage
@@ -74,6 +80,16 @@ export default function FormAdicionarLivros({
         />
         <TextField
           margin="dense"
+          id="gender"
+          label="gender"
+          type="text"
+          fullWidth
+          variant="standard"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+        />
+        <TextField
+          margin="dense"
           id="description"
           label="Descrição"
           type="text"
@@ -81,6 +97,26 @@ export default function FormAdicionarLivros({
           variant="standard"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+        />
+        <TextField
+          margin="dense"
+          id="publicationYear"
+          label="Ano da Publicação"
+          type="text"
+          fullWidth
+          variant="standard"
+          value={publicationYear}
+          onChange={(e) => setPublicationYear(e.target.value)}
+        />{" "}
+        <TextField
+          margin="dense"
+          id="dateRegister"
+          label="Data do Registro"
+          type="text"
+          fullWidth
+          variant="standard"
+          value={dateRegister}
+          onChange={(e) => setDateRegister(e.target.value)}
         />
       </DialogContent>
       <DialogActions>

@@ -3,13 +3,17 @@ import FormAdicionarLivros from "./FormAdicionarLivros";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { Grid } from "@mui/material";
+import { Button, Grid, IconButton } from "@mui/material";
 import { blue } from "@mui/material/colors";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 interface Livro {
   title: string;
   author: string;
+  gender: string;
   description: string;
+  publicationYear: string;
+  dateRegister: string;
 }
 
 function ListaLivros() {
@@ -31,8 +35,28 @@ function ListaLivros() {
                 secondary={
                   <>
                     <div className="alignRight">Autor: {livro.author}</div>
+                    <div className="alignRight">Genero: {livro.gender}</div>
                     <div className="alignRight">
                       Descrição: {livro.description}
+                    </div>
+                    <div className="alignRight">
+                      Ano da Publicação: {livro.publicationYear}
+                    </div>
+                    <div className="alignRight">
+                      Data do Registro: {livro.dateRegister}
+                    </div>
+                    <div className="alignRight">
+                      <Button
+                        sx={{ m: 1 }}
+                        variant="contained"
+                        endIcon={<DeleteIcon />}
+                        // onClick={handleOpen}
+                      ></Button>
+                      <Button
+                        variant="contained"
+                        endIcon={<EditIcon />}
+                        // onClick={handleOpen}
+                      ></Button>
                     </div>
                   </>
                 }
